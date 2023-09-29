@@ -1,4 +1,4 @@
-package main
+package chain_of_responsibility
 
 import (
 	"fmt"
@@ -48,23 +48,4 @@ func (ph *PushHandler) Send(message string) bool {
 
 func (ph *PushHandler) SetNext(handler NotificationHandler) {
 	ph.nextHandler = handler
-}
-
-// Клиентский код
-func main() {
-	// Цепочка обработчиков: Email -> SMS -> Push
-	emailHandler := &EmailHandler{}
-	smsHandler := &SMSHandler{}
-	pushHandler := &PushHandler{}
-
-	emailHandler.SetNext(smsHandler)
-	smsHandler.SetNext(pushHandler)
-
-	// Отправляем уведомление и передаем его по цепочке обработчиков
-	message := "Важное уведомление!"
-	if emailHandler.Send(message) {
-		fmt.Println("Уведомление успешно отправлено.")
-	} else {
-		fmt.Println("Не удалось отправить уведомление.")
-	}
 }

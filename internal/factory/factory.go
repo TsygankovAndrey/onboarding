@@ -1,4 +1,4 @@
-package main
+package factory
 
 import "fmt"
 
@@ -29,14 +29,4 @@ func CreateCar() Transport {
 
 func CreateAirplane() Transport {
 	return Airplane{}
-}
-
-func main() {
-	// Используем фабричные методы для создания объектов
-	car := CreateCar()
-	airplane := CreateAirplane()
-
-	// Вызываем методы объектов
-	car.Move()
-	airplane.Move()
 }

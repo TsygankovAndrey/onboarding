@@ -1,4 +1,4 @@
-package main
+package builder
 
 type Builder interface {
 	SetName(name string)
@@ -51,11 +51,7 @@ func (bb *BrickBuilder) Build() Building {
 	}
 }
 
-func main() {
-	usecase()
-}
-
-func usecase() {
+func Usecase() {
 	woodenBuilder := &WoodenBuilder{}
 	woodenBuilder.SetName("Andrey")
 	woodenBuilder.SetAge(22)

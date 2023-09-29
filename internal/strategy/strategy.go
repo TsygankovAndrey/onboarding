@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package strategy
 
 // Стратегия - интерфейс для всех конкретных стратегий
 type SortingStrategy interface {
@@ -56,29 +52,13 @@ func (qs QuickSortStrategy) Sort(data []int) []int {
 
 // Контекст - класс, который использует выбранную стратегию для сортировки
 type SortContext struct {
-	strategy SortingStrategy
+	Strategy SortingStrategy
 }
 
 func (sc *SortContext) SetStrategy(strategy SortingStrategy) {
-	sc.strategy = strategy
+	sc.Strategy = strategy
 }
 
 func (sc *SortContext) Sort(data []int) []int {
-	return sc.strategy.Sort(data)
-}
-
-func main() {
-	data := []int{6, 42, 17, 29, 50, 8, 31, 12, 4, 23}
-
-	// Создаем контекст с начальной стратегией сортировки пузырьком
-	context := &SortContext{strategy: BubbleSortStrategy{}}
-
-	// Сортируем массив данных с использованием текущей стратегии (пузырьковой сортировки)
-	sortedData := context.Sort(data)
-	fmt.Println("BubbleSort:", sortedData)
-
-	// Меняем стратегию на быструю сортировку и сортируем снова
-	context.SetStrategy(QuickSortStrategy{})
-	sortedData = context.Sort(data)
-	fmt.Println("QuickSort:", sortedData)
+	return sc.Strategy.Sort(data)
 }

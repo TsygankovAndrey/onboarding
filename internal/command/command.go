@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"fmt"
@@ -48,22 +48,4 @@ type RemoteControl struct {
 
 func (r *RemoteControl) PressButton() {
 	r.Command.Execute()
-}
-
-func main() {
-	// Свет и команды для включения и выключения
-	light := &Light{}
-	turnOnCommand := &TurnOnLightCommand{Light: light}
-	turnOffCommand := &TurnOffLightCommand{Light: light}
-
-	// Создаем пульт и настраиваем его кнопки
-	remote := &RemoteControl{}
-
-	// Нажимаем кнопку для включения света
-	remote.Command = turnOnCommand
-	remote.PressButton()
-
-	// Нажимаем кнопку для выключения света
-	remote.Command = turnOffCommand
-	remote.PressButton()
 }

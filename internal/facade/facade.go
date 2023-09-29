@@ -1,4 +1,4 @@
-package main
+package facade
 
 import "fmt"
 
@@ -43,9 +43,4 @@ type Memory struct {
 
 func (m Memory) Load() {
 	fmt.Println("Загрузка данных в память")
-}
-
-func main() {
-	computer := NewComputerFacade()
-	computer.Start()
 }
