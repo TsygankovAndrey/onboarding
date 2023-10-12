@@ -1,7 +1,7 @@
 // Pattern strategy
 package strategy
 
-// Стратегия - интерфейс для всех конкретных стратегий
+// Стратегия - интерфейс для всех конкретных стратегий (изменяет исходные данные)
 type SortingStrategy interface {
 	Sort(data []int) []int
 }
@@ -21,13 +21,15 @@ func (bs BubbleSortStrategy) Sort(data []int) []int {
 	return data
 }
 
-// Конкретная стратегия 2 - быстрая сортировка
+// Конкретная стратегия 2 - быстрая сортировка (создает и возвращает копию отсортированных данных)
 type QuickSortStrategy struct{}
 
 func (qs QuickSortStrategy) Sort(data []int) []int {
 	if len(data) <= 1 {
 		return data
 	}
+	dataCopy := make([]int, len(data))
+	copy(dataCopy, data)
 
 	pivot := data[len(data)-1]
 	less := []int{}
@@ -48,7 +50,7 @@ func (qs QuickSortStrategy) Sort(data []int) []int {
 	less = qs.Sort(less)
 	more = qs.Sort(more)
 
-	return append(append(less, equal...), more...)
+	return dataCopy
 }
 
 // Контекст - класс, который использует выбранную стратегию для сортировки
