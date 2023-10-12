@@ -28,15 +28,16 @@ func (qs QuickSortStrategy) Sort(data []int) []int {
 	if len(data) <= 1 {
 		return data
 	}
+
 	dataCopy := make([]int, len(data))
 	copy(dataCopy, data)
 
-	pivot := data[len(data)-1]
+	pivot := dataCopy[len(dataCopy)-1]
 	less := []int{}
 	equal := []int{}
 	more := []int{}
 
-	for _, item := range data {
+	for _, item := range dataCopy {
 		switch {
 		case item < pivot:
 			less = append(less, item)
@@ -50,7 +51,7 @@ func (qs QuickSortStrategy) Sort(data []int) []int {
 	less = qs.Sort(less)
 	more = qs.Sort(more)
 
-	return dataCopy
+	return append(append(less, equal...), more...)
 }
 
 // Контекст - класс, который использует выбранную стратегию для сортировки
