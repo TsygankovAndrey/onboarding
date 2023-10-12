@@ -1,3 +1,4 @@
+// main pattern command
 package main
 
 import "patterns/internal/command"

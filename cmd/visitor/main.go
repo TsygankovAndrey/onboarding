@@ -1,7 +1,9 @@
+// main pattern visitor
 package main
 
 import (
 	"fmt"
+
 	"patterns/internal/visitor"
 )
 

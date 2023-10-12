@@ -1,13 +1,16 @@
+// Pattern facade
 package facade
 
 import "fmt"
 
+// ComputerFacade - фасад компьютера, предоставляющий упрощенный интерфейс для работы с компонентами
 type ComputerFacade struct {
 	cpu       CPU
 	hardDrive HardDrive
 	memory    Memory
 }
 
+// NewComputerFacade создает новый экземпляр ComputerFacade
 func NewComputerFacade() *ComputerFacade {
 	return &ComputerFacade{
 		cpu:       CPU{},
@@ -16,6 +19,7 @@ func NewComputerFacade() *ComputerFacade {
 	}
 }
 
+// Start запускает компьютер, скрывая сложность внутренних компонентов
 func (cf *ComputerFacade) Start() {
 	fmt.Println("Запуск компьютера")
 	cf.cpu.Start()

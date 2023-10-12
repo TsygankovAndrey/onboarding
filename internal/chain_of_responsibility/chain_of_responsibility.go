@@ -1,51 +1,62 @@
+// Pattern chan_of_responsibility
 package chain_of_responsibility
 
-import (
-	"fmt"
-)
+import "fmt"
 
-// Интерфейс обработчика
+// NotificationHandler - интерфейс обработчика уведомлений
 type NotificationHandler interface {
 	Send(message string) bool
 	SetNext(handler NotificationHandler)
 }
 
-// Конкретные обработчики
-type EmailHandler struct {
+// BaseHandler - базовая структура обработчика
+type BaseHandler struct {
 	nextHandler NotificationHandler
 }
 
+// SetNext устанавливает следующий обработчик в цепочке
+func (bh *BaseHandler) SetNext(handler NotificationHandler) {
+	bh.nextHandler = handler
+}
+
+// EmailHandler - обработчик электронной почты
+type EmailHandler struct {
+	BaseHandler
+}
+
+// Send обрабатывает сообщение по электронной почте, если может; иначе передает следующему обработчику.
 func (eh *EmailHandler) Send(message string) bool {
 	fmt.Println("Отправка по электронной почте:", message)
-	return true
+	if eh.nextHandler != nil {
+		return eh.nextHandler.Send(message)
+	}
+	return false
 }
 
-func (eh *EmailHandler) SetNext(handler NotificationHandler) {
-	eh.nextHandler = handler
-}
-
+// SMSHandler - обработчик SMS
 type SMSHandler struct {
-	nextHandler NotificationHandler
+	BaseHandler
 }
 
+// Send обрабатывает SMS, если может; иначе передает следующему обработчику
 func (sh *SMSHandler) Send(message string) bool {
 	fmt.Println("Отправка SMS:", message)
-	return true
+	if sh.nextHandler != nil {
+		return sh.nextHandler.Send(message)
+	}
+	return false
 }
 
-func (sh *SMSHandler) SetNext(handler NotificationHandler) {
-	sh.nextHandler = handler
-}
-
+// PushHandler - Обработчик push-уведомлений
 type PushHandler struct {
-	nextHandler NotificationHandler
+	BaseHandler
 }
 
+// Send обрабатывает push-уведомление, если может; иначе передает следующему обработчику
 func (ph *PushHandler) Send(message string) bool {
 	fmt.Println("Отправка push-уведомления:", message)
-	return true
-}
-
-func (ph *PushHandler) SetNext(handler NotificationHandler) {
-	ph.nextHandler = handler
+	if ph.nextHandler != nil {
+		return ph.nextHandler.Send(message)
+	}
+	return false
 }

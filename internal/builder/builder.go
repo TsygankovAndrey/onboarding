@@ -1,11 +1,14 @@
+// Pattern builder
 package builder
 
+// Builder интерфейс определяет методы для построения зданий
 type Builder interface {
 	SetName(name string)
 	SetAge(age int)
 	Build() Building
 }
 
+// WoodenBuilder - реализация Builder для строительства деревянных зданий
 type WoodenBuilder struct {
 	name string
 	age  int
@@ -16,14 +19,17 @@ type Building struct {
 	Builder
 }
 
+// SetName устанавливает имя строителя
 func (wb *WoodenBuilder) SetName(name string) {
 	wb.name = name
 }
 
+// SetAge устанавливает возраст строителя
 func (wb *WoodenBuilder) SetAge(age int) {
 	wb.age = age
 }
 
+// Build создает деревянное здание и возвращает его
 func (wb *WoodenBuilder) Build() Building {
 	return Building{
 		Builder: wb,
@@ -31,19 +37,23 @@ func (wb *WoodenBuilder) Build() Building {
 	}
 }
 
+// BrickBuilder - реализация Builder для строительства кирпичных зданий
 type BrickBuilder struct {
 	name string
 	age  int
 }
 
+// SetName устанавливает имя строителя
 func (bb *BrickBuilder) SetName(name string) {
 	bb.name = name
 }
 
+// SetAge устанавливает возраст строителя
 func (bb *BrickBuilder) SetAge(age int) {
 	bb.age = age
 }
 
+// Build создает кирпичное здание и возвращает его
 func (bb *BrickBuilder) Build() Building {
 	return Building{
 		Builder: bb,
@@ -51,6 +61,7 @@ func (bb *BrickBuilder) Build() Building {
 	}
 }
 
+// Usecase - функция, демонстрирующая использование строителей
 func Usecase() {
 	woodenBuilder := &WoodenBuilder{}
 	woodenBuilder.SetName("Andrey")

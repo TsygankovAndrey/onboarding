@@ -1,7 +1,9 @@
+// main pattern chan_of_responsibility
 package main
 
 import (
 	"fmt"
+
 	"patterns/internal/chain_of_responsibility"
 )
 

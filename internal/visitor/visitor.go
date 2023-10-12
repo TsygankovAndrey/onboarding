@@ -1,3 +1,4 @@
+// Pattern visitor
 package visitor
 
 // Интерфейс Посетителя

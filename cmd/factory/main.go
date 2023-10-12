@@ -1,3 +1,4 @@
+// main pattern factory
 package main
 
 import "patterns/internal/factory"

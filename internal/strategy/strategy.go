@@ -1,3 +1,4 @@
+// Pattern strategy
 package strategy
 
 // Стратегия - интерфейс для всех конкретных стратегий

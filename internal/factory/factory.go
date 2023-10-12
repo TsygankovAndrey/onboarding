@@ -1,13 +1,14 @@
+// Pattern factory
 package factory
 
 import "fmt"
 
-// Продукт
+// Transport - продукт
 type Transport interface {
 	Move()
 }
 
-// Конкретные продукты
+// Car, Airplane - конкретные продукты
 type Car struct{}
 type Airplane struct{}
 
@@ -19,10 +20,10 @@ func (a Airplane) Move() {
 	fmt.Println("Самолет летит в небе")
 }
 
-// Фабричный метод
+// TransportFactory - фабричный метод
 type TransportFactory func() Transport
 
-// Конкретные фабричные методы
+// CreateCar, CreateAirplane - Конкретные фабричные методы
 func CreateCar() Transport {
 	return Car{}
 }

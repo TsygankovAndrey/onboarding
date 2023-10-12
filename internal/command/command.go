@@ -1,3 +1,4 @@
+// Pattern command
 package command
 
 import (

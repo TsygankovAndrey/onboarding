@@ -1,7 +1,9 @@
+// main pattern strategy
 package main
 
 import (
 	"fmt"
+
 	"patterns/internal/strategy"
 )
 
