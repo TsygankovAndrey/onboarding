@@ -8,17 +8,23 @@ import (
 )
 
 func main() {
-	data := []int{6, 42, 17, 29, 50, 8, 31, 12, 4, 23}
+	// Создаем контекст сортировки
+	context := &strategy.SortContext{}
 
-	// Создаем контекст с начальной стратегией сортировки пузырьком
-	context := &strategy.SortContext{Strategy: strategy.BubbleSortStrategy{}}
+	// Данные, которые нужно отсортировать
+	data := []int{5, 1, 4, 2, 8}
 
-	// Сортируем массив данных с использованием текущей стратегии (пузырьковой сортировки)
+	// Устанавливаем стратегию сортировки пузырьком
+	context.SetStrategy(&strategy.BubbleSortStrategy{})
+
+	// Используем контекст для сортировки данных
 	sortedData := context.Sort(data)
-	fmt.Println("BubbleSort:", sortedData)
+	fmt.Println("Отсортированные данные (пузырьком):", sortedData)
 
-	// Меняем стратегию на быструю сортировку и сортируем снова
-	context.SetStrategy(strategy.QuickSortStrategy{})
+	// Теперь меняем стратегию на QuickSortStrategy
+	context.SetStrategy(&strategy.QuickSortStrategy{})
+
+	// Используем контекст для сортировки данных с новой стратегией
 	sortedData = context.Sort(data)
-	fmt.Println("QuickSort:", sortedData)
+	fmt.Println("Отсортированные данные (быстрая сортировка):", sortedData)
 }

@@ -9,11 +9,12 @@ import (
 
 // Клиентский код
 func main() {
-	// Цепочка обработчиков: Email -> SMS -> Push
-	emailHandler := &chain_of_responsibility.EmailHandler{}
-	smsHandler := &chain_of_responsibility.SMSHandler{}
+	// Создаем цепочку обработчиков: Email -> SMS -> Push
 	pushHandler := &chain_of_responsibility.PushHandler{}
+	smsHandler := &chain_of_responsibility.SMSHandler{}
+	emailHandler := &chain_of_responsibility.EmailHandler{}
 
+	// Устанавливаем следующего обработчика в цепочке
 	emailHandler.SetNext(smsHandler)
 	smsHandler.SetNext(pushHandler)
 
