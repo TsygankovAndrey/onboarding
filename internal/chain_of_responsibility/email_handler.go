@@ -19,5 +19,5 @@ func (eh *EmailHandler) Send(message string) bool {
 	if eh.nextHandler != nil {
 		return eh.nextHandler.Send(message)
 	}
-	return true // Это обработчик по умолчанию, который всегда завершает отправку успешно
+	return true
 }

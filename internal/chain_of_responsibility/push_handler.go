@@ -19,5 +19,5 @@ func (ph *PushHandler) Send(message string) bool {
 	if ph.nextHandler != nil {
 		return ph.nextHandler.Send(message)
 	}
-	return true // Это обработчик по умолчанию, который всегда завершает отправку успешно
+	return true
 }

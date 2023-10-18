@@ -19,5 +19,5 @@ func (sh *SMSHandler) Send(message string) bool {
 	if sh.nextHandler != nil {
 		return sh.nextHandler.Send(message)
 	}
-	return true // Это обработчик по умолчанию, который всегда завершает отправку успешно
+	return true
 }

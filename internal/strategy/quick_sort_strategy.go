@@ -9,7 +9,6 @@ func (qs QuickSortStrategy) Sort(data []int) []int {
 	if len(data) <= 1 {
 		return data
 	}
-
 	pivot := data[len(data)-1]
 	less := []int{}
 	equal := []int{}
@@ -25,9 +24,7 @@ func (qs QuickSortStrategy) Sort(data []int) []int {
 			more = append(more, item)
 		}
 	}
-
 	less = qs.Sort(less)
 	more = qs.Sort(more)
-
 	return append(append(less, equal...), more...)
 }

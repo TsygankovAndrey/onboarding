@@ -8,7 +8,6 @@ func Usecase() {
 	woodenBuilder.SetAge(22)
 	woodenBuilding := woodenBuilder.Build()
 	woodenBuilding.Builder.Build()
-
 	brickBuilder := &BrickBuilder{}
 	brickBuilder.SetName("Сергей")
 	brickBuilder.SetAge(28)
