@@ -1,22 +1,19 @@
+// main pattern strategy
 package main
 
 import (
 	"fmt"
+
 	"patterns/internal/strategy"
 )
 
 func main() {
-	data := []int{6, 42, 17, 29, 50, 8, 31, 12, 4, 23}
-
-	// Создаем контекст с начальной стратегией сортировки пузырьком
-	context := &strategy.SortContext{Strategy: strategy.BubbleSortStrategy{}}
-
-	// Сортируем массив данных с использованием текущей стратегии (пузырьковой сортировки)
+	context := &strategy.SortContext{}
+	data := []int{5, 1, 4, 2, 8}
+	context.SetStrategy(&strategy.BubbleSortStrategy{})
 	sortedData := context.Sort(data)
-	fmt.Println("BubbleSort:", sortedData)
-
-	// Меняем стратегию на быструю сортировку и сортируем снова
-	context.SetStrategy(strategy.QuickSortStrategy{})
+	fmt.Println("Отсортированные данные (пузырьком):", sortedData)
+	context.SetStrategy(&strategy.QuickSortStrategy{})
 	sortedData = context.Sort(data)
-	fmt.Println("QuickSort:", sortedData)
+	fmt.Println("Отсортированные данные (быстрая сортировка):", sortedData)
 }

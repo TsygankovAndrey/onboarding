@@ -1,3 +1,4 @@
+// main pattern facade
 package main
 
 import "patterns/internal/facade"
